@@ -1,0 +1,12 @@
+500,brain,healthy,human,/2/16/0.8/1.37/;
+450,brain,healthy,human,/1.4/20/0.8/1.37/;
+500,brain,healthy,human,/2.1/15.5/0.8/1.37/;
+450,brain,healthy,human,/1.9/21/0.8/1.37/;
+500,brain,tumor,human,/3.2/18.5/0.7/1.38/;
+450,brain,tumor,human,/3.6/21/0.8/1.38/;
+500,brain,healthy,rat,/1000/20/0.8/1.37/;
+460,brain,healthy,human,/2/20/0.8/1.37/;
+500,brain,tumor,human,/200/20/0.8/1.37/;
+550,liver,tumor,rat,/4/40/0.9/1.55/;
+550,bladder,tumor,rat,/3/30/0.99/1.25/;
+
