@@ -51,17 +51,17 @@ grid [label .opt.source -textvariable source] -column 2 -row 12 -sticky we
 
 
 
-grid [button .opt.generatefile -text "Generate an opt file with name:" -command generate] -column 1 -row 13 -sticky w
+grid [button .opt.generatefile -text "Generate an opt file with name:" -command generate] -column 1 -row 13 -sticky we
 
-grid [entry .opt.filename -textvariable fname ] -column 2 -row 13 -sticky w
+grid [entry .opt.filename -textvariable fname ] -column 2 -row 13 -sticky we
 
-grid [button .opt.nborgan -text "Set number of total organs:" -command SetOrgan] -column 1 -row 14 -sticky w
-grid [entry .opt.norgans -textvariable norgan ] -column 2 -row 14 -sticky w
+grid [button .opt.nborgan -text "Set number of total organs:" -command SetOrgan] -column 1 -row 14 -sticky we
+grid [entry .opt.norgans -textvariable norgan ] -column 2 -row 14 -sticky we
 
 
-grid [button .opt.addopt -text "Add current property to file" -command AddOpt] -column 1 -row 15 -sticky w
+grid [button .opt.addopt -text "Add current property to file" -command AddOpt] -column 1 -row 15 -sticky we
 
-grid [button .opt.closefile -text "Finish opt file" -command FinishOpt] -column 1 -row 16 -sticky w
+grid [button .opt.closefile -text "Finish opt file" -command FinishOpt] -column 1 -row 16 -sticky we
 
 #-------
 

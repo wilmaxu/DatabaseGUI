@@ -10,16 +10,15 @@ package require FullMonte 1.0
 
 
 #optfn
+set optfn "/home/yiwenxu/Desktop/DatabaseGUI/Human_Brain.opt"
 
-
-#########################################################################
 
 
 
 #meshfn
+set meshfn "/home/yiwenxu/Desktop/Finished/5post/Separate Vtk/5post_Brain-resampled.mesh.vtk"
 
 
-#########################################################################
 
 ###read mesh from VTK file
 # VTKLegacyReader R
@@ -49,14 +48,11 @@ set tLoaded [clock clicks -milliseconds]
 
 
 ###### Configure source (Line source with given endpoints)
-
+ 
 Point P
-P position "2.23 5.1956 -1.522"
-
-
-
-
-
+P position "22 33 55"
+ 
+ 
 ###### Create and configure simulation kernel with surface scoring
 TetraVolumeKernel k
 
@@ -82,7 +78,7 @@ k maxSteps           100000
 k maxHits            1000
     # maximum number of boundaries a single step can take
 
-k packetCount        8
+k packetCount        1000000
     # number of packets to simulate (more -> better quality, longer run)
 
 k threadCount        8
@@ -183,9 +179,51 @@ volumeFieldData AddArray $regions
 
 # Write volume fluence & tissue type to .vtk file
 
-VTKW SetFileName "6_axt_tumor_1.vtk"
+VTKW SetFileName "demo.vtk"
 VTKW SetFileTypeToBinary
 VTKW Update
 
 volumeFieldData RemoveArray $A
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
