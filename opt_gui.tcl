@@ -29,7 +29,7 @@ grid [label .opt.nlbl -text "n"] -column 5 -row 7 -sticky w
 grid [label .opt.avglbl -text "Average"] -column 1 -row 8 -sticky w
 grid [label .opt.minlbl -text "Min"] -column 1 -row 9 -sticky w
 grid [label .opt.maxlbl -text "Max"] -column 1 -row 10 -sticky w
-grid [label .opt.sourcelbl -text "Source"] -column 1 -row 12 -sticky w
+
 
 grid [ttk::label .opt.avg_a -textvariable avg_a] -column 2 -row 8 -sticky we
 grid [ttk::label .opt.avg_s -textvariable avg_s] -column 3 -row 8 -sticky we
@@ -46,26 +46,31 @@ grid [ttk::label .opt.max_s -textvariable max_s] -column 3 -row 10 -sticky we
 grid [ttk::label .opt.max_g -textvariable max_g] -column 4 -row 10 -sticky we
 grid [ttk::label .opt.max_n -textvariable max_n] -column 5 -row 10 -sticky we
 
-grid [label .opt.source -textvariable source] -column 2 -row 12 -sticky we
+grid [button .opt.advanced -text "Advanced opt" -command advance] -column 4 -row 12 -sticky e
 
 
 
+grid [label .opt.space1 -text ""] -column 2 -row 13 -sticky w
 
-grid [button .opt.generatefile -text "Generate an opt file with name:" -command generate] -column 1 -row 13 -sticky w
+grid [button .opt.generatefile -text "Generate/Overwrite an opt file with name:" -command generate] -column 1 -row 14 -sticky we
 
-grid [entry .opt.filename -textvariable fname ] -column 2 -row 13 -sticky w
+grid [entry .opt.filename -textvariable fname ] -column 2 -row 14 -sticky we
 
-grid [button .opt.nborgan -text "Set number of total organs:" -command SetOrgan] -column 1 -row 14 -sticky w
-grid [entry .opt.norgans -textvariable norgan ] -column 2 -row 14 -sticky w
+grid [button .opt.nborgan -text "Set number of total organs:" -command SetOrgan] -column 1 -row 15 -sticky we
+grid [entry .opt.norgans -textvariable norgan ] -column 2 -row 15 -sticky we
 
 
-grid [button .opt.addopt -text "Add current property to file" -command AddOpt] -column 1 -row 15 -sticky w
+grid [button .opt.addopt -text "Add current property to file" -command AddOpt] -column 1 -row 16 -sticky we
 
-grid [button .opt.closefile -text "Finish opt file" -command FinishOpt] -column 1 -row 16 -sticky w
+grid [button .opt.deleteopt -text "Delete last line" -command DeleteOpt] -column 1 -row 17 -sticky we
+
+grid [button .opt.closefile -text "Finish opt file" -command FinishOpt] -column 1 -row 18 -sticky we
+
+grid [label .opt.filedis -textvariable filedis] -column 1 -row 19 -sticky w
 
 #-------
 
 #-------
 
-source opt_search.tcl
-
+source opt_function.tcl
+source AdvancedOpt_gui.tcl
