@@ -1,2 +1,2 @@
 # DatabaseGUI
-A tcl/tk script with data in text file. Simple filtering and searching performance. 
+Requirment: tcl/tk version 8.5 or higher
