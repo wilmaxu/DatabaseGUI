@@ -1,3 +1,5 @@
+#!/usr/bin
+
 package require Tk
 
 

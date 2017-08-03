@@ -7,8 +7,8 @@ grid [label .opt.orglbl -text "organ"] -column 1 -row 2 -sticky w
 grid [label .opt.spelbl -text "species"] -column 1 -row 3 -sticky w
 
 grid [ttk::combobox .opt.wlval -values [list 100 200 300 400 500] -textvariable wavelength] -column 2 -row 1 -sticky w
-grid [ttk::combobox .opt.organval -values [list brain bladder liver fat] -textvariable organ] -column 2 -row 2 -sticky w
-grid [ttk::combobox .opt.speciesval -values [list human rat rabbit pig none] -textvariable species] -column 2 -row 3 -sticky w
+grid [ttk::combobox .opt.organval -values [list air bladder bone brain fat gray_matter heart liver lung muscle skin water white_matter] -textvariable organ] -column 2 -row 2 -sticky w
+grid [ttk::combobox .opt.speciesval -values [list human rat mouse rabbit pig none] -textvariable species] -column 2 -row 3 -sticky w
 
 
 grid [label .opt.uclbl -text "uncertainty"] -column 3 -row 1 -sticky w
@@ -46,7 +46,7 @@ grid [ttk::label .opt.max_s -textvariable max_s] -column 3 -row 10 -sticky we
 grid [ttk::label .opt.max_g -textvariable max_g] -column 4 -row 10 -sticky we
 grid [ttk::label .opt.max_n -textvariable max_n] -column 5 -row 10 -sticky we
 
-grid [button .opt.advanced -text "Advanced opt" -command advance] -column 4 -row 12 -sticky e
+grid [button .opt.allopt -text "Show All" -command ShowAllOpt] -column 4 -row 12 -sticky e
 
 
 
@@ -68,9 +68,12 @@ grid [button .opt.closefile -text "Finish opt file" -command FinishOpt] -column 
 
 grid [label .opt.filedis -textvariable filedis] -column 1 -row 19 -sticky w
 
+
+
+grid [button .opt.database -text "Edit Database" -command MakeDatabase] -column 4 -row 20 -sticky e
+
 #-------
 
 #-------
 
 source opt_function.tcl
-source AdvancedOpt_gui.tcl

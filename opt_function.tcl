@@ -1,15 +1,21 @@
 package require Tk
+source AllOpt_function.tcl
 
-
-proc advance {} {
+proc ShowAllOpt {} {
     toplevel .aopt
-    wm title .aopt "Advanced Optical Properties"
+    wm title .aopt "All Optical Properties"
     wm geometry .aopt 750x550
-    source adopt_gui.tcl
+    source AllOpt_gui.tcl
 
 }
 
+proc MakeDatabase {} {
+    toplevel .db
+    wm title .db "Optical Properties Database"
+    wm geometry .db 400x400
+    source database_gui.tcl
 
+}
 
 proc search {} {
    global wavelength
@@ -20,7 +26,7 @@ proc search {} {
 
    if {[catch {set ResultList [UpdateData $wavelength $uncertainty $organ $status $species]}]} {
       error "Please fill in all fields"    
-   }
+  }
 
    if {$status=="" || $species=="" || $organ==""} {
       error "Please fill in all fields"    
@@ -32,25 +38,25 @@ proc search {} {
    set ::avg_g [format "%-6.3f" [lindex $ResultList 2]]
    set ::avg_n [format "%-6.3f" [lindex $ResultList 3]]
 
-   set ::min_a [lindex $ResultList 4]
-   set ::min_s [lindex $ResultList 5]
-   set ::min_g [lindex $ResultList 6]
-   set ::min_n [lindex $ResultList 7]
+   set ::min_a [format "%-6.3f" [lindex $ResultList 4]]
+   set ::min_s [format "%-6.3f" [lindex $ResultList 5]]
+   set ::min_g [format "%-6.3f" [lindex $ResultList 6]]
+   set ::min_n [format "%-6.3f" [lindex $ResultList 7]]
 
-   set ::max_a [lindex $ResultList 8]
-   set ::max_s [lindex $ResultList 9]
-   set ::max_g [lindex $ResultList 10]
-   set ::max_n [lindex $ResultList 11]
+   set ::max_a [format "%-6.3f" [lindex $ResultList 8]]
+   set ::max_s [format "%-6.3f" [lindex $ResultList 9]]
+   set ::max_g [format "%-6.3f" [lindex $ResultList 10]]
+   set ::max_n [format "%-6.3f" [lindex $ResultList 11]]
+   
+   UpdateAllOpt
 
-   set ::source "www.path_to_source.com"
-  
 }
 
 
 
 #==================================
 proc UpdateData {w u o st sp} {
- 
+  global QualifiedOpt
   set infile [open "data.txt" r+]
   set AllInfo [split [read $infile] \n] 
 
@@ -108,8 +114,10 @@ proc UpdateData {w u o st sp} {
   }
   
 
-  
+
+
   if [expr {$no_species != 0}] { 
+      set QualifiedOpt $ListSpecies
       foreach i $ListSpecies {
          lappend LMuA [lindex [regexp -all -inline {\S+} $i] 4]
          lappend LMuS [lindex [regexp -all -inline {\S+} $i] 5]
@@ -117,6 +125,8 @@ proc UpdateData {w u o st sp} {
          lappend LN [lindex [regexp -all -inline {\S+} $i] 7] 
       }
    } else {
+       set QualifiedOpt ""
+       lappend QualifiedOpt "N/A N/A N/A N/A N/A N/A N/A N/A N/A"
        lappend LMuA 0
        lappend LMuS 0
        lappend LG 0
@@ -138,6 +148,7 @@ proc UpdateData {w u o st sp} {
   lappend ListOfResult [list [FindMax $LMuS]]
   lappend ListOfResult [list [FindMax $LG]]
   lappend ListOfResult [list [FindMax $LN]]
+
 
   return $ListOfResult
   
@@ -277,14 +288,28 @@ proc WithinRange {x} {
 }
 
 proc FindMin {x} {
-  set mi [lindex $x 0]
+  set NoneZeroList ""
+  set mi 0
+
   foreach i $x {
-   if [expr {$i < $mi}] {
-       set mi $i
-    }
+     if {$i !=0} {
+        lappend NoneZeroList $i
+     }
   }
+
+  if {$NoneZeroList != ""} {
+     set mi [lindex $NoneZeroList 0]
+     foreach i $NoneZeroList {
+        if [expr {$i < $mi}] {
+           set mi $i
+        }
+     }
+  }
+
   return $mi
 }
+
+
 
 proc FindMax {x} {
   set ma [lindex $x 0]
@@ -300,10 +325,16 @@ proc FindAvg {x} {
   set sumall 0
   set count 0
   foreach i $x {
-    set sumall [expr {$sumall + $i}]
-    set count [expr {$count + 1}]
+    if {$i != 0} {
+       set sumall [expr {$sumall + $i}]
+       set count [expr {$count + 1}]
+    }
+  }
+  if {$count != 0} {
+      return [expr {$sumall / $count}]
+  } else {
+      return 0
   }
 
-  return [expr {$sumall / $count}]
 }
 
