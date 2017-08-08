@@ -7,6 +7,7 @@ proc AddToDatabase {} {
   global db_species
   global db_a
   global db_s
+  global db_s1
   global db_g
   global db_n
   global db_r
@@ -15,7 +16,7 @@ proc AddToDatabase {} {
   set AllInfo [split [read $f] \n] 
   close $f
   
-  lappend AllInfo "$db_wavelength $db_organ $db_status $db_species $db_a $db_s $db_g $db_n $db_r"
+  lappend AllInfo "$db_wavelength $db_organ $db_status $db_species $db_a $db_s $db_s1 $db_g $db_n $db_r"
   set f [open "data.txt" "w"]
   puts $f [join $AllInfo "\n"]
   close $f

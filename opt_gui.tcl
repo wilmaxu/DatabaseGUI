@@ -7,7 +7,7 @@ grid [label .opt.orglbl -text "organ"] -column 1 -row 2 -sticky w
 grid [label .opt.spelbl -text "species"] -column 1 -row 3 -sticky w
 
 grid [ttk::combobox .opt.wlval -values [list 100 200 300 400 500] -textvariable wavelength] -column 2 -row 1 -sticky w
-grid [ttk::combobox .opt.organval -values [list air bladder bone brain fat gray_matter heart liver lung muscle skin water white_matter] -textvariable organ] -column 2 -row 2 -sticky w
+grid [ttk::combobox .opt.organval -values [list air bladder blood bone brain breast fat gray_matter heart liver lung muscle skin water white_matter] -textvariable organ] -column 2 -row 2 -sticky w
 grid [ttk::combobox .opt.speciesval -values [list human rat mouse rabbit pig none] -textvariable species] -column 2 -row 3 -sticky w
 
 
@@ -20,33 +20,38 @@ grid [ttk::combobox .opt.sttval -values [list healthy tumor none] -textvariable 
 
 grid [button .opt.search -text "Search" -command search] -column 4 -row 4 -sticky e
 
+grid configure [frame .opt.frame1 -padx 60 -pady 10 -height 200 -width 100] -columnspan 4 -row 7 -sticky we
 
-grid [label .opt.albl -text "mu_a"] -column 2 -row 7 -sticky w
-grid [label .opt.slbl -text "mu_s"] -column 3 -row 7 -sticky w
-grid [label .opt.glbl -text "g"] -column 4 -row 7 -sticky w
-grid [label .opt.nlbl -text "n"] -column 5 -row 7 -sticky w
+grid [label .opt.frame1.albl -text "mu_a"] -column 2 -row 1 -padx 20 -sticky w
+grid [label .opt.frame1.slbl -text "mu_s"] -column 3 -row 1 -padx 20 -sticky w
+grid [label .opt.frame1.slbl1 -text "mu_s'"] -column 4 -row 1 -padx 20 -sticky w
+grid [label .opt.frame1.glbl -text "g"] -column 5 -row 1 -padx 20 -sticky w
+grid [label .opt.frame1.nlbl -text "n"] -column 6 -row 1 -padx 20 -sticky w
 
-grid [label .opt.avglbl -text "Average"] -column 1 -row 8 -sticky w
-grid [label .opt.minlbl -text "Min"] -column 1 -row 9 -sticky w
-grid [label .opt.maxlbl -text "Max"] -column 1 -row 10 -sticky w
+grid [label .opt.frame1.avglbl -text "Average"] -column 1 -row 2 -padx 5 -sticky w
+grid [label .opt.frame1.minlbl -text "Min"] -column 1 -row 3 -padx 5 -sticky w
+grid [label .opt.frame1.maxlbl -text "Max"] -column 1 -row 4 -padx 5 -sticky w
 
 
-grid [ttk::label .opt.avg_a -textvariable avg_a] -column 2 -row 8 -sticky we
-grid [ttk::label .opt.avg_s -textvariable avg_s] -column 3 -row 8 -sticky we
-grid [ttk::label .opt.avg_g -textvariable avg_g] -column 4 -row 8 -sticky we
-grid [ttk::label .opt.avg_n -textvariable avg_n] -column 5 -row 8 -sticky we
+grid [ttk::label .opt.frame1.avg_a -textvariable avg_a] -column 2 -row 2 -padx 5 -sticky we
+grid [ttk::label .opt.frame1.avg_s -textvariable avg_s] -column 3 -row 2 -padx 5 -sticky we
+grid [ttk::label .opt.frame1.avg_s1 -textvariable avg_s1] -column 4 -row 2 -padx 5 -sticky we
+grid [ttk::label .opt.frame1.avg_g -textvariable avg_g] -column 5 -row 2 -padx 5 -sticky we
+grid [ttk::label .opt.frame1.avg_n -textvariable avg_n] -column 6 -row 2 -padx 5 -sticky we
 
-grid [ttk::label .opt.min_a -textvariable min_a] -column 2 -row 9 -sticky we
-grid [ttk::label .opt.min_s -textvariable min_s] -column 3 -row 9 -sticky we
-grid [ttk::label .opt.min_g -textvariable min_g] -column 4 -row 9 -sticky we
-grid [ttk::label .opt.min_n -textvariable min_n] -column 5 -row 9 -sticky we
+grid [ttk::label .opt.frame1.min_a -textvariable min_a] -column 2 -row 3 -padx 5 -sticky we
+grid [ttk::label .opt.frame1.min_s -textvariable min_s] -column 3 -row 3 -padx 5 -sticky we
+grid [ttk::label .opt.frame1.min_s1 -textvariable min_s1] -column 4 -row 3 -padx 5 -sticky we
+grid [ttk::label .opt.frame1.min_g -textvariable min_g] -column 5 -row 3 -padx 5 -sticky we
+grid [ttk::label .opt.frame1.min_n -textvariable min_n] -column 6 -row 3 -padx 5 -sticky we
 
-grid [ttk::label .opt.max_a -textvariable max_a] -column 2 -row 10 -sticky we
-grid [ttk::label .opt.max_s -textvariable max_s] -column 3 -row 10 -sticky we
-grid [ttk::label .opt.max_g -textvariable max_g] -column 4 -row 10 -sticky we
-grid [ttk::label .opt.max_n -textvariable max_n] -column 5 -row 10 -sticky we
+grid [ttk::label .opt.frame1.max_a -textvariable max_a] -column 2 -row 4 -padx 5 -sticky we
+grid [ttk::label .opt.frame1.max_s -textvariable max_s] -column 3 -row 4 -padx 5 -sticky we
+grid [ttk::label .opt.frame1.max_s1 -textvariable max_s1] -column 4 -row 4 -padx 5 -sticky we
+grid [ttk::label .opt.frame1.max_g -textvariable max_g] -column 5 -row 4 -padx 5 -sticky we
+grid [ttk::label .opt.frame1.max_n -textvariable max_n] -column 6 -row 4 -padx 5 -sticky we
 
-grid [button .opt.allopt -text "Show All" -command ShowAllOpt] -column 4 -row 12 -sticky e
+grid [button .opt.allopt -text "Show All" -command ShowAllOpt] -column 4 -row 7 -sticky e
 
 
 

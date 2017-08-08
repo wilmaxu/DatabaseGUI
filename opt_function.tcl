@@ -35,18 +35,21 @@ proc search {} {
    
    set ::avg_a [format "%-6.3f" [lindex $ResultList 0]]
    set ::avg_s [format "%-6.3f" [lindex $ResultList 1]]
-   set ::avg_g [format "%-6.3f" [lindex $ResultList 2]]
-   set ::avg_n [format "%-6.3f" [lindex $ResultList 3]]
+   set ::avg_s1 [format "%-6.3f" [lindex $ResultList 2]]
+   set ::avg_g [format "%-6.3f" [lindex $ResultList 3]]
+   set ::avg_n [format "%-6.3f" [lindex $ResultList 4]]
 
-   set ::min_a [format "%-6.3f" [lindex $ResultList 4]]
-   set ::min_s [format "%-6.3f" [lindex $ResultList 5]]
-   set ::min_g [format "%-6.3f" [lindex $ResultList 6]]
-   set ::min_n [format "%-6.3f" [lindex $ResultList 7]]
+   set ::min_a [format "%-6.3f" [lindex $ResultList 5]]
+   set ::min_s [format "%-6.3f" [lindex $ResultList 6]]
+   set ::min_s1 [format "%-6.3f" [lindex $ResultList 7]]
+   set ::min_g [format "%-6.3f" [lindex $ResultList 8]]
+   set ::min_n [format "%-6.3f" [lindex $ResultList 9]]
 
-   set ::max_a [format "%-6.3f" [lindex $ResultList 8]]
-   set ::max_s [format "%-6.3f" [lindex $ResultList 9]]
-   set ::max_g [format "%-6.3f" [lindex $ResultList 10]]
-   set ::max_n [format "%-6.3f" [lindex $ResultList 11]]
+   set ::max_a [format "%-6.3f" [lindex $ResultList 10]]
+   set ::max_s [format "%-6.3f" [lindex $ResultList 11]]
+   set ::max_s1 [format "%-6.3f" [lindex $ResultList 12]]
+   set ::max_g [format "%-6.3f" [lindex $ResultList 13]]
+   set ::max_n [format "%-6.3f" [lindex $ResultList 14]]
    
    UpdateAllOpt
 
@@ -121,14 +124,16 @@ proc UpdateData {w u o st sp} {
       foreach i $ListSpecies {
          lappend LMuA [lindex [regexp -all -inline {\S+} $i] 4]
          lappend LMuS [lindex [regexp -all -inline {\S+} $i] 5]
-         lappend LG [lindex [regexp -all -inline {\S+} $i] 6]
-         lappend LN [lindex [regexp -all -inline {\S+} $i] 7] 
+         lappend LMuS1 [lindex [regexp -all -inline {\S+} $i] 6]
+         lappend LG [lindex [regexp -all -inline {\S+} $i] 7]
+         lappend LN [lindex [regexp -all -inline {\S+} $i] 8] 
       }
    } else {
        set QualifiedOpt ""
        lappend QualifiedOpt "N/A N/A N/A N/A N/A N/A N/A N/A N/A"
        lappend LMuA 0
        lappend LMuS 0
+       lappend LMuS1 0
        lappend LG 0
        lappend LN 0 
    }
@@ -136,16 +141,19 @@ proc UpdateData {w u o st sp} {
 
   lappend ListOfResult [list [FindAvg $LMuA]]
   lappend ListOfResult [list [FindAvg $LMuS]]
+  lappend ListOfResult [list [FindAvg $LMuS1]]
   lappend ListOfResult [list [FindAvg $LG]]
   lappend ListOfResult [list [FindAvg $LN]]
 
   lappend ListOfResult [list [FindMin $LMuA]]
   lappend ListOfResult [list [FindMin $LMuS]]
+  lappend ListOfResult [list [FindMin $LMuS1]]
   lappend ListOfResult [list [FindMin $LG]]
   lappend ListOfResult [list [FindMin $LN]]
 
   lappend ListOfResult [list [FindMax $LMuA]]
   lappend ListOfResult [list [FindMax $LMuS]]
+  lappend ListOfResult [list [FindMax $LMuS1]]
   lappend ListOfResult [list [FindMax $LG]]
   lappend ListOfResult [list [FindMax $LN]]
 
@@ -175,6 +183,7 @@ proc AddOpt {} {
    global fname
    global avg_a
    global avg_s
+   global avg_s1
    global avg_g
    global avg_n
 
@@ -182,7 +191,7 @@ proc AddOpt {} {
    if {[catch {set f [open $fname a]}]} {
       error "Please create a file first"
    }
-   if {[catch {puts $f "$avg_a $avg_s $avg_g $avg_n"}]} {
+   if {[catch {puts $f "$avg_a $avg_s $avg_s1 $avg_g $avg_n"}]} {
       error "No optical property selected"
    }
    
