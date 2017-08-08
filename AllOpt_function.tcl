@@ -1,9 +1,12 @@
 package require Tk
 
-
+# Update the optical propertires displayed in the window. This function is called everytime when "search" is clicked
 proc UpdateAllOpt {} {
+    # Clear the previous display, otherwise the new output will be added to the old display
     ClearAllDisplay
+    # QualifiedOpt carries the data obtained after "search" is clicked
     global QualifiedOpt
+    # count is used to iterate elements is the QualifiedOpt list
     set count 1
     foreach i $QualifiedOpt {
         global w$count
@@ -25,6 +28,7 @@ proc UpdateAllOpt {} {
 
 }
 
+# Clear all the content before display the updated optical properties
 proc ClearAllDisplay {} {
     for {set i 1} {$i < 15} {incr i} {
         global w$i

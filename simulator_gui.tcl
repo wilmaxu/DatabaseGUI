@@ -1,14 +1,12 @@
 package require Tk
+source simulator_function.tcl
 
 
 
 
-
-
-
+#-----------Window settings---------------
 grid [ttk::label .sim.simfile -textvariable simfname] -column 2 -row 1 -sticky w
 grid [button .sim.selectfile -text "Choose tcl file:" -command OpenSimulator] -column 1 -row 1 -sticky we
-
 
 grid [ttk::label .sim.optfile -textvariable optfname] -column 2 -row 2 -sticky w
 grid [button .sim.selectoptfile -text "Choose opt file:" -command OpenOpt] -column 1 -row 2 -sticky we
@@ -30,9 +28,6 @@ grid [label .sim.space2 -text ""] -column 1 -row 7 -sticky w
 grid [button .sim.run -text "Setup Simulator" -command SetSimulator] -column 2 -row 8 -sticky e
 
 
-#-------
 
-#-------
 
-source simulator_function.tcl
 

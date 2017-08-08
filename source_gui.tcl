@@ -1,6 +1,8 @@
 package require Tk
+source source_function.tcl
 
 
+#-----------Window settings---------------
 grid [button .ls.point -text "Point Source:" -command makePoint] -column 1 -row 1 -sticky we
 
 grid [label .ls.space1 -text ""] -column 1 -row 2 -sticky w
@@ -17,5 +19,6 @@ grid [label .ls.space3 -text ""] -column 1 -row 8 -sticky w
 
 
 
-source source_function.tcl
+# Todo: Currently only one source is allowed in each tcl file. Will add composition source option later. 
+
 

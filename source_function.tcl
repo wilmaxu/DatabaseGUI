@@ -1,18 +1,20 @@
 package require Tk
 
 
+# Function to add point source to the tcl file
 proc makePoint {} {
      grid [label .ls.plbl -text "Point:"] -column 2 -row 1 -sticky w
      grid [entry .ls.pxaxis -textvariable px ] -column 3 -row 1 -sticky w
      grid [entry .ls.pyaxis -textvariable py ] -column 4 -row 1 -sticky w
      grid [entry .ls.pzaxis -textvariable pz ] -column 5 -row 1 -sticky w
      grid [button .ls.setpoint -text "Set" -command ChangePointSource] -column 6 -row 1 -sticky w
+     # Function used to substitude the light source in the original file with new point source
      proc ChangePointSource {} {
           upvar 1 px px
           upvar 1 py py
           upvar 1 pz pz
           global simfname
-
+          # A simulator(tcl file) must be selected before any editing
           if {[catch {set f [open $simfname r+]} ermsg]} {
               error "Please select tcl file first"    
           }
@@ -20,7 +22,7 @@ proc makePoint {} {
           set lines [split $file_data "\n"]
           close $f
   
-          # Change mesh file path
+          # Locate the place where light source should be added in the tcl file. Everything else will be deleted between the two lines indicated below
           set index1 [expr [lsearch -regexp $lines "###### Configure source.?"]+1]
           set index2 [expr [lsearch -regexp $lines "###### Create and configure simulation kernel.?"]-1]
           set lines [lreplace $lines $index1 $index2 " " "Point P" "P position \"$px $py $pz\"" " " " "]
@@ -33,7 +35,7 @@ proc makePoint {} {
 }
 
 
-
+# Function to add line source to the tcl file
 proc makeLine {} {
      grid [label .ls.linelbl1 -text "Point1:"] -column 2 -row 3 -sticky w
      grid [entry .ls.lxaxis -textvariable lx ] -column 3 -row 3 -sticky w
@@ -61,7 +63,6 @@ proc makeLine {} {
           set lines [split $file_data "\n"]
           close $f
   
-          # Change mesh file path
           set index1 [expr [lsearch -regexp $lines "###### Configure source.?"]+1]
           set index2 [expr [lsearch -regexp $lines "###### Create and configure simulation kernel.?"]-1]
           set lines [lreplace $lines $index1 $index2 " " "Line P" "P endpoint 0 \"$lx $ly $lz\"" "P endpoint 1 \"$lx2 $ly2 $lz2\"" " " " "]
@@ -74,6 +75,7 @@ proc makeLine {} {
 }
 
 
+# Function to add pencil beam source to the tcl file
 proc makePencil {} {
      grid [label .ls.pblbl -text "Point:"] -column 2 -row 6 -sticky w
      grid [entry .ls.pbxaxis -textvariable pbx ] -column 3 -row 6 -sticky w
@@ -101,7 +103,6 @@ proc makePencil {} {
           set lines [split $file_data "\n"]
           close $f
   
-          # Change mesh file path
           set index1 [expr [lsearch -regexp $lines "###### Configure source.?"]+1]
           set index2 [expr [lsearch -regexp $lines "###### Create and configure simulation kernel.?"]-1]
           set lines [lreplace $lines $index1 $index2 " " "PencilBeam P 1.0 \"$pbx $pby $pbz\" \"$pbx2 $pby2 $pbz2\"" " " " "]
