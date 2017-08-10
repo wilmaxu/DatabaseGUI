@@ -1,5 +1,5 @@
 **Computer Requirement:** 
-- tcl/tk version 8.5 or higher
+- tcl/tk version 8.5 or higher(This is usually pre-installed in the computer. Run "tclsh" in terminal to see if tcl is installed. Then run "puts $tcl_version" to check the version of installed tcl.
 
 
 
