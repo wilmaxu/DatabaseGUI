@@ -1,5 +1,6 @@
 package require Tk
-source DatabaseFilePath.tcl
+
+
 
 #Window Settings
 wm title . "FullMonte"

@@ -18,7 +18,7 @@ proc ShowAllOpt {} {
 proc MakeDatabase {} {
     toplevel .db
     wm title .db "Optical Properties Database"
-    wm geometry .db 400x400
+    wm geometry .db 400x500
     source database_gui.tcl
 
 }
@@ -32,6 +32,7 @@ proc search {} {
    global uncertainty
 
    # the search engine only works when all fields have non-empty value
+
    if {[catch {set ResultList [UpdateData $wavelength $uncertainty $organ $status $species]}]} {
       error "Please fill in all fields"    
   }
@@ -188,8 +189,9 @@ proc UpdateOPTWindow {} {
 
 # Search qualified data and return as a list to the "search" function
 proc UpdateData {w u o st sp} {
+  source DatabaseFilePath.tcl
   global QualifiedOpt
-  set infile [open "data.txt" r+]
+  set infile [open $OpticalDataPath r+]
   set AllInfo [split [read $infile] \n] 
 
   # the following parameters are used to check if no data in the database matches the searching criteria. Passing empty list to next level of searching will cause error.

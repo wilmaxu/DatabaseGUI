@@ -1,3 +1,18 @@
 package require Tk
 
-set OpticalDataPath "/home/yiwenxu/Desktop/FullMonteGUI/data.txt"
+set myMainLocation [file normalize [info script DatabaseFilePath.tcl]]
+set FnameLength [string length [file native DatabaseFilePath.tcl]]
+set PathLength [string length $myMainLocation]
+set difference [expr $PathLength - $FnameLength]
+set myMainLocationPath [string range $myMainLocation 0 $difference-1]
+
+set optfilename data.txt
+set spectrumfilename AbsorptionSpectrum.txt
+
+set OpticalDataPath  $myMainLocationPath$optfilename
+
+set AbsorptionSpectrumPath $myMainLocationPath$spectrumfilename
+
+
+
+
