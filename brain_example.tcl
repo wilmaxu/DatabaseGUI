@@ -9,10 +9,10 @@ package require FullMonte 1.0
 ###### Basic parameters: file names
 
 #optfn
-set optfn "/home/yiwenxu/Desktop/DatabaseGUI/Human_Brain.opt"
+set optfn "/home/yiwenxu/Desktop/DatabaseGUI/COOL.opt"
 
 #meshfn
-set meshfn "/home/yiwenxu/Desktop/Finished/5post/Separate Vtk/5post_Brain-resampled.mesh.vtk"
+set meshfn "/home/yiwenxu/Desktop/DatabaseGUI/data.txt"
 
 
 ###read mesh from VTK file
@@ -73,7 +73,7 @@ k maxSteps           100000
 k maxHits            1000
     # maximum number of boundaries a single step can take
 
-k packetCount        1000000
+k packetCount        123456789
     # number of packets to simulate (more -> better quality, longer run)
 
 k threadCount        8
@@ -174,11 +174,20 @@ volumeFieldData AddArray $regions
 
 # Write volume fluence & tissue type to .vtk file
 
-VTKW SetFileName "demo.vtk"
+VTKW SetFileName "lalala lala "
 VTKW SetFileTypeToBinary
 VTKW Update
 
 volumeFieldData RemoveArray $A
+
+
+
+
+
+
+
+
+
 
 
 

@@ -1,0 +1,35 @@
+PPIX
+Wiegell, S. R., et al. "Daylight photodynamic therapy for actinic keratosis: an international consensus." Journal of the European Academy of Dermatology and Venereology 26.6 (2012): 673-679.
+250 0.095
+275 0.1
+300 0.085
+325 0.08
+350 0.145
+375 0.3
+400 0.85
+425 0.8
+450 0.07
+475 0.03
+500 0.105
+525 0.06
+550 0.06
+575 0.025
+600 0.018
+625 0.02
+650 0.005
+675 0
+700 0
+
+HPD
+#Put in reference
+100 200
+200 300 
+300 400
+400 500
+500 600
+600 700
+
+ASDAD
+#Put in reference
+
+

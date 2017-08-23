@@ -1,5 +1,5 @@
 package require Tk
-
+source DatabaseFilePath.tcl
 
 #Window Settings
 wm title . "FullMonte"
@@ -13,7 +13,7 @@ grid [ttk::button .m.simulator -text "Simulator Properties" -command makeSimFram
 grid [label .m.space2 -text ""] -column 2 -row 4 -sticky w
 grid [ttk::button .m.sourcep -text "Source Placement" -command makeLightSourceFrame] -column 2 -row 5 -sticky we
 grid [label .m.space3 -text ""] -column 2 -row 6 -sticky w
-grid [ttk::button .m.mesh -text "Mesh Properties" -command makeMeshFrame] -column 2 -row 7 -sticky we
+grid [ttk::button .m.spec -text "Absorption Spectrum" -command makeSpectrumFrame] -column 2 -row 7 -sticky we
 
 
 
@@ -24,7 +24,8 @@ proc makeOpticalFrame {} {
     }
     
     wm title .opt "Optical Properties"
-    wm geometry .opt 750x550
+    #.opt configure -background "white"
+    #wm geometry .opt 750x550
     source opt_gui.tcl
 }
 
@@ -40,15 +41,16 @@ proc makeLightSourceFrame {} {
 }
 
 #Create mesh property window. This is an empty window for now. Will add content if needed.
-proc makeMeshFrame {} {
-    if {[catch {toplevel .mesh }]} {
+proc makeSpectrumFrame {} {
+    if {[catch {toplevel .spec }]} {
        error "One window is already open. Please close it before open a new window"    
     }
 
-    wm title .mesh "Mesh Properties"
-    wm geometry .mesh 550x250
-    grid [ttk::label .mesh.wavelbl -text "To be continue"] -column 1 -row 1 
+    wm title .spec "Absorption Spectrum"
+    wm geometry .spec 550x250
+    source spectrum_gui.tcl
 }
+
 
 #Create simulator property window.
 proc makeSimFrame {} {
