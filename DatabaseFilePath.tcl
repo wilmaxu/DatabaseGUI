@@ -1,5 +1,6 @@
 package require Tk
 
+# To get the directory of where DataBase GUI is installed
 set myMainLocation [file normalize [info script DatabaseFilePath.tcl]]
 set FnameLength [string length [file native DatabaseFilePath.tcl]]
 set PathLength [string length $myMainLocation]
