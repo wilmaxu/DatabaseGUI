@@ -4,17 +4,18 @@ package require Tk
 
 #Window Settings
 wm title . "FullMonte"
-wm geometry . 350x400
-grid [ttk::frame .m -padding "100 100 30 30"] -column 0 -row 0 -sticky nwes
+wm geometry . 350x350
+
+tk_setPalette snow2
 
 #Buttons for four options
-grid [ttk::button .m.optb -text "Optical Properties" -command makeOpticalFrame] -column 2 -row 1 -sticky we 
-grid [label .m.space1 -text ""] -column 2 -row 2 -sticky w
-grid [ttk::button .m.simulator -text "Simulator Properties" -command makeSimFrame] -column 2 -row 3 -sticky we
-grid [label .m.space2 -text ""] -column 2 -row 4 -sticky w
-grid [ttk::button .m.sourcep -text "Source Placement" -command makeLightSourceFrame] -column 2 -row 5 -sticky we
-grid [label .m.space3 -text ""] -column 2 -row 6 -sticky w
-grid [ttk::button .m.spec -text "Absorption Spectrum" -command makeSpectrumFrame] -column 2 -row 7 -sticky we
+grid [button .optb -text "Optical Properties" -command makeOpticalFrame ] -column 2 -row 1 -pady 20 -padx 80 -sticky we 
+
+grid [button .simulator -text "Simulator Properties" -command makeSimFrame] -column 2 -row 3 -pady 20 -padx 80 -sticky we
+
+grid [button .sourcep -text "Source Placement" -command makeLightSourceFrame] -column 2 -row 5 -pady 20 -padx 80 -sticky we
+
+grid [button .spec -text "Absorption Spectrum" -command makeSpectrumFrame] -column 2 -row 7 -pady 20 -padx 80 -sticky we
 
 
 
